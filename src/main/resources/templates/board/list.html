@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 목록</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        .write-btn {
+            margin: 20px 0;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<h1>게시판</h1>
+
+<div class="write-btn">
+    <a th:href="@{/board/new}">글 작성</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>글번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회수</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="post : ${posts}">
+            <td th:text="${post.id}">1</td>
+            <td>
+                <a th:href="@{/board/{id}(id=${post.id})}"
+                   th:text="${post.title}">
+                    제목
+                </a>
+            </td>
+            <td th:text="${post.writer}">작성자</td>
+            <td th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd')}">
+                2024-01-01
+            </td>
+            <td th:text="${post.viewCount}">0</td>
+        </tr>
+
+        <tr th:if="${#lists.isEmpty(posts)}">
+            <td colspan="4">게시글이 없습니다.</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

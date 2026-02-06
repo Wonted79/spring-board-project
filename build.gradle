@@ -30,6 +30,14 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	//mariaDB
+	implementation 'org.mariadb.jdbc:mariadb-java-client'
+	//thymeleaf
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	//Mybatis
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	//implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.2'
 }
 
 tasks.named('test') {
