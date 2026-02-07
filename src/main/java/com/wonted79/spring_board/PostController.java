@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
+@RequestMapping("/board")
 @RequiredArgsConstructor
 public class PostController {
 
@@ -19,13 +20,14 @@ public class PostController {
     @GetMapping("/list")
     public String posts(Model model){
         List<Post> posts = postService.findPosts();
-        model.addAllAttributes(posts);
+        model.addAttribute("posts",posts);
         return "board/list";
     }
 
     @GetMapping("/{postId}")
     public String post(@PathVariable Long postId, Model model){
         Post post = postService.findById(postId).orElseThrow(() -> new IllegalArgumentException("게시글 없음"));
+        model.addAttribute("post",post);
         return "board/detail";
     }
 
@@ -34,7 +36,7 @@ public class PostController {
         return "board/addForm";
     }
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     public String addPost(@ModelAttribute Post post, RedirectAttributes redirectAttributes) {
         Post savedPost = postService.addPost(post);
         redirectAttributes.addAttribute("postId", savedPost.getId());

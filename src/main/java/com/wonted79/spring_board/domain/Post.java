@@ -1,6 +1,8 @@
 package com.wonted79.spring_board.domain;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class Post{
     private Long id;
@@ -8,5 +10,5 @@ public class Post{
     private String title;
     private String content;
     private int viewCount;
-    private String createdAt;
+    private LocalDateTime createdAt;
 }

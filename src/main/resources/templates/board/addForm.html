@@ -33,7 +33,7 @@
 
 <h2>게시글 등록</h2>
 
-<form th:action="@{/posts/write}" method="post">
+<form th:action="@{/board/add}" method="post">
     <table>
         <tr>
             <th>제목</th>
@@ -50,13 +50,13 @@
         <tr>
             <th>작성자</th>
             <td>
-                <input type="text" name="author" style="width: 50%;" required>
+                <input type="text" name="userId" style="width: 50%;" required>
             </td>
         </tr>
     </table>
 
     <div class="btn-area">
-        <button type="button" onclick="location.href='/posts'">취소</button>
+        <button type="button" onclick="location.href='/board/list'">취소</button>
         <button type="submit">글 등록</button>
     </div>
 </form>

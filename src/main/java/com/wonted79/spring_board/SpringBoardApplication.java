@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.wonted79.spring_board.repository")
+@MapperScan("com.wonted79.spring_board")
 public class SpringBoardApplication {
 
 	public static void main(String[] args) {

@@ -1,7 +1,7 @@
 package com.wonted79.spring_board.service;
 
 import com.wonted79.spring_board.domain.Post;
-import com.wonted79.spring_board.repository.PostRepository;
+import com.wonted79.spring_board.repository.PostMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,22 +12,28 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PostService {
 
-    private final PostRepository postRepository;
+    private final PostMapper postMapper;
 
-    public Post addPost(Post post){
-        return postRepository.save(post);
+    public Post addPost(Post post) {
+        postMapper.insert(post);
+        return post;
     }
 
     public void update(Long postId) {
-        postRepository.update(postId);
+        postMapper.update(postId);
+    }
+
+    public void delete(Long postId) {
+        postMapper.deleteById(postId);
     }
 
     public Optional<Post> findById(Long postId){
-        return postRepository.findById(postId);
+
+        return Optional.ofNullable(postMapper.findById(postId));
     }
 
     public List<Post> findPosts(){
-        return postRepository.findAll();
+        return postMapper.findAll();
     }
 
 }

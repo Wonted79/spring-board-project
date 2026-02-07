@@ -37,26 +37,22 @@
 
 <div class="container">
 
-    <!-- 제목 -->
     <div class="title" th:text="${post.title}">제목</div>
 
-    <!-- 작성자 | 작성일 | 조회수 -->
     <div class="meta">
-        <span th:text="${post.author}">작성자</span>
+        <span th:text="${post.userId}">작성자</span>
         &nbsp;|&nbsp;
         <span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd')}">작성일</span>
         &nbsp;|&nbsp;
         조회수 <span th:text="${post.viewCount}">0</span>
     </div>
 
-    <!-- 내용 -->
     <div class="content" th:text="${post.content}">
         게시글 내용
     </div>
 
-    <!-- 목록 버튼 -->
     <div class="btn-area">
-        <button type="button" onclick="location.href='/posts'">목록</button>
+        <button type="button" onclick="location.href='/board/list'">목록</button>
     </div>
 
 </div>

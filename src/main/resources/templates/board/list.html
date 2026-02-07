@@ -31,7 +31,7 @@
 <h1>게시판</h1>
 
 <div class="write-btn">
-    <a th:href="@{/board/new}">글 작성</a>
+    <a th:href="@{/board/add}">글 작성</a>
 </div>
 
 <table>
@@ -53,7 +53,7 @@
                     제목
                 </a>
             </td>
-            <td th:text="${post.writer}">작성자</td>
+            <td th:text="${post.userId}">작성자</td>
             <td th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd')}">
                 2024-01-01
             </td>
@@ -61,7 +61,7 @@
         </tr>
 
         <tr th:if="${#lists.isEmpty(posts)}">
-            <td colspan="4">게시글이 없습니다.</td>
+            <td colspan="5">게시글이 없습니다.</td>
         </tr>
     </tbody>
 </table>

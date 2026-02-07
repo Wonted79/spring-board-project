@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 수정</title>
+
+    <!-- 공통 레이아웃 스타일 영역 -->
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        /* ===== 레이아웃 영역 ===== */
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 15px;
+            background: #f5f5f5;
+            text-align: center;
+        }
+
+        /* ===== updateForm 전용 스타일 ===== */
+        table {
+            width: 600px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        th {
+            width: 120px;
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ===== 레이아웃 공통 영역 ===== -->
+<header>
+    <h2>Spring Board</h2>
+    <nav>
+        <a th:href="@{/board/list}">목록</a>
+        <a th:href="@{/board/new}">글작성</a>
+    </nav>
+</header>
+
+<!-- ===== 여기부터가 updateForm 내용 영역 ===== -->
+<main>
+
+    <h2>게시글 수정</h2>
+
+    <form th:object="${post}"
+          th:action="@{/board/{id}/edit(id=*{id})}"
+          method="post">
+
+        <table>
+            <tr>
+                <th>제목</th>
+                <td>
+                    <input type="text" th:field="*{title}" required>
+                </td>
+            </tr>
+
+            <tr>
+                <th>내용</th>
+                <td>
+                    <textarea rows="8" th:field="*{content}" required></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <th>작성자</th>
+                <td>
+                    <input type="text" th:field="*{userId}" readonly>
+                </td>
+            </tr>
+
+            <tr>
+                <th>작성일</th>
+                <td>
+                    <span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd')}"></span>
+
+                    <input type="hidden" th:field="*{createdAt}">
+                    <input type="hidden" th:field="*{viewCount}">
+                </td>
+            </tr>
+        </table>
+
+        <div style="margin-top:20px;">
+            <button type="button"
+                    th:onclick="|location.href='@{/board/{id}(id=*{id})}'|">
+                취소
+            </button>
+
+            <button type="submit">
+                수정 저장
+            </button>
+        </div>
+
+    </form>
+
+</main>
+
+<!-- ===== 레이아웃 공통 영역 ===== -->
+<footer>
+    게시판 프로젝트 © 2026
+</footer>
+
+</body>
+</html>

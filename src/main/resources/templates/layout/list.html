@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 수정</title>
+    <style>
+
+    </style>
+</head>
+<header>
+    <h2>Spring Board</h2>
+    <nav>
+        <a th:href="@{/board/list}">목록</a>
+        <a th:href="@{/board/add}">글작성</a>
+    </nav>
+</header>
+<main>
+    <h2>게시판 목록</h2>
+    <div class="write-btn">
+        <a th:href="@{/board/add}">글 작성</a>
+    </div>
+    <table>
+        <thead>
+            <tr>글번호</tr>
+            <tr>제목</tr>
+            <tr>작성자</tr>
+            <tr>작성일</tr>
+            <tr>조회수</tr>
+        </thead>
+        <tbody>
+            <tr th:each="post:${posts}"
+                th:href="@{/board/{id}(id=${post.id})}">
+                <td th:text="${post.id}">1</td>
+                <td th:text="${post.title}">제목</td>
+                <td th:text="${post.userId}">작성자</td>
+                <td th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd')}">
+                    2024-01-01
+                </td>
+                <td th:text="${post.viewCount}">0</td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(posts)}">
+                <td colspan="5">게시글이 없습니다.</td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+<footer>
+    게시판 프로젝트 © 2026 wonted79
+</footer>
